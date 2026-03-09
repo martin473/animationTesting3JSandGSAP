@@ -70,8 +70,8 @@ export default function Page() {
             flipState.current = Flip.getState(".item")
             setVideoOrder(prev => {
                 const next = [...prev]
-                const last = next.pop()
-                next.unshift(last)
+                const first = next.shift()
+                next.push(first)
                 return next
             })
         }
@@ -87,9 +87,9 @@ export default function Page() {
                     key={`video-${video[0]}`}
                     className={`item item-${video[0]} absolute w-[80vw] max-w-[300px] [aspect-ratio:2/3] bg-transparent`}
                     style={{
-                        left: (index - videoOrder.length / 2) * -3,
-                        top: (index - videoOrder.length / 2) * -2,
-                        zIndex: index
+                        left: (index - videoOrder.length / 2) * 3,
+                        top: (index - videoOrder.length / 2) * 2,
+                        zIndex: videoOrder.length - index
                     }}
                 >
                     <VideoPanel url={video[1]} video={video[1]} />
