@@ -189,7 +189,7 @@ export default function PortfolioPage() {
       <div className="mt-10 flex flex-col gap-10">
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Project Snapshot</h2>
-        <div className="grid gap-3 rounded-xl border p-5 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 rounded-xl border p-5">
           <p>
             <span className="font-medium">Role:</span> Product Designer &
             Developer

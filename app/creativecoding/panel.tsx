@@ -20,12 +20,12 @@ export function topButton(){
 export function VideoPanel({
   url,
   video,
-  isActive,
-  onVideoReady
+  isActive = true,
+  onVideoReady,
 }: {
   url: string;
   video: string;
-  isActive: boolean;
+  isActive?: boolean;
   onVideoReady?: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -77,7 +77,7 @@ export function VideoPanel({
                   loop
                   muted
                   playsInline
-                  preload="auto"
+                  preload={isActive ? "auto" : "none"}
                   onLoadedData={notifyReady}
                   onCanPlay={notifyReady}
                 >

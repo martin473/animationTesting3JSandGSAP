@@ -16,8 +16,8 @@ type ScreenshotCarouselProps = {
 };
 
 /**
- * Single full-width carousel. On md+ the slide viewport uses the browser height
- * so screenshots read at a comfortable scale; images use object-contain.
+ * Viewport matches device class: portrait phone frame on small screens,
+ * 16:9 “desktop monitor” on md+. Images use object-contain inside the frame.
  */
 export default function ScreenshotCarousel({ screenshots }: ScreenshotCarouselProps) {
   const [index, setIndex] = useState(0);
@@ -45,44 +45,49 @@ export default function ScreenshotCarousel({ screenshots }: ScreenshotCarouselPr
       </div>
       <div className="w-full">
         <div
-          className="relative h-[min(70dvh,720px)] overflow-hidden rounded-md border-solid border-border shadow-sm [border-width:1pt] md:h-dvh"
+          className="relative mx-auto w-full max-w-[min(100%,min(28rem,calc(88dvh*9/16)))] overflow-hidden rounded-md border-solid border-border shadow-sm [border-width:1pt] md:max-w-none"
         >
-          <div
-            className="flex h-full transition-transform duration-500 ease-in-out"
-            style={trackStyle}
-          >
-            {screenshots.map((shot) => (
+          {/* Portrait 9:16 on small screens; 16:9 “monitor” from md up (padding % of width). */}
+          <div className="relative h-0 w-full pb-[177.78%] md:pb-[56.25%]">
+            <div className="absolute inset-0">
               <div
-                key={`${shot.src}::${shot.title}`}
-                className="relative h-full w-full shrink-0"
+                className="flex h-full w-full transition-transform duration-500 ease-in-out"
+                style={trackStyle}
               >
-                <Image
-                  src={shot.src}
-                  alt={shot.alt}
-                  fill
-                  sizes="(max-width: 896px) 100vw, 896px"
-                  className="bg-muted/40 object-contain"
-                  draggable={false}
-                />
+                {screenshots.map((shot) => (
+                  <div
+                    key={`${shot.src}::${shot.title}`}
+                    className="relative h-full w-full shrink-0"
+                  >
+                    <Image
+                      src={shot.src}
+                      alt={shot.alt}
+                      fill
+                      sizes="(max-width: 767px) min(100vw, 28rem), (max-width: 1200px) min(896px, 90vw), 896px"
+                      className="bg-muted/40 object-contain"
+                      draggable={false}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
+              <button
+                type="button"
+                onClick={prev}
+                aria-label="Previous screenshot"
+                className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border bg-background/90 px-3 py-2 text-lg font-semibold leading-none shadow-sm transition-colors hover:bg-accent"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Next screenshot"
+                className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border bg-background/90 px-3 py-2 text-lg font-semibold leading-none shadow-sm transition-colors hover:bg-accent"
+              >
+                →
+              </button>
+            </div>
           </div>
-          <button
-            type="button"
-            onClick={prev}
-            aria-label="Previous screenshot"
-            className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border bg-background/90 px-3 py-2 text-lg font-semibold leading-none shadow-sm transition-colors hover:bg-accent"
-          >
-            ←
-          </button>
-          <button
-            type="button"
-            onClick={next}
-            aria-label="Next screenshot"
-            className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border bg-background/90 px-3 py-2 text-lg font-semibold leading-none shadow-sm transition-colors hover:bg-accent"
-          >
-            →
-          </button>
         </div>
       </div>
     </div>
