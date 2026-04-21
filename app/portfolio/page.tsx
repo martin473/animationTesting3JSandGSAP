@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Link from "next/link";
 import ScreenshotCarousel from "./screenshot-carousel";
 
 export const metadata: Metadata = {
@@ -122,13 +122,26 @@ const mobileScreenshots = [
   },
 ];
 
+const screenshots = [...desktopScreenshots, ...mobileScreenshots];
+
 export default function PortfolioPage() {
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col gap-10 px-6 py-14 sm:px-10">
       <header className="space-y-4">
-        <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-          Portfolio Case Study
-        </p>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+          <p className="font-medium uppercase tracking-wider text-muted-foreground">
+            Portfolio Case Study
+          </p>
+          <span className="hidden sm:inline" aria-hidden>
+            ·
+          </span>
+          <Link
+            href="/portfolio/streamer"
+            className="font-medium text-foreground underline underline-offset-4 hover:opacity-80"
+          >
+            Streamer MVP case study
+          </Link>
+        </div>
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Lawbee</h1>
         <p className="max-w-3xl text-lg text-muted-foreground">
           Built Lawbee to allow issues focused NGOs regularly track legislation
@@ -152,17 +165,30 @@ export default function PortfolioPage() {
             GitHub Repository
           </a>
         </div>
-        <figure className="space-y-2 pt-2">
-          <div className="overflow-hidden rounded-md border-solid border-border shadow-sm [border-width:1pt]">
-            <Image
-              src="/case-study/lawbee-search-industry-desktop-auth.png"
-              alt="Lawbee homepage search results for industry on desktop"
-              width={1440}
-              height={900}
-              className="block h-auto w-full"
-            />
-          </div>
-        </figure>
+        <div className="space-y-3 pt-2">
+          <p className="text-muted-foreground">
+            Captures from the live product at{" "}
+            <a
+              href="https://www.lawbee.org"
+              className="font-medium text-foreground underline underline-offset-4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              www.lawbee.org
+            </a>
+            : marketing home, login, on-page search with the term &quot;industry&quot;, and the{" "}
+            <a
+              href="https://www.lawbee.org/mybills"
+              className="font-medium text-foreground underline underline-offset-4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              /mybills
+            </a>{" "}
+            view in desktop and mobile widths (anonymous session—shows sign-in if not logged in).
+          </p>
+          <ScreenshotCarousel screenshots={screenshots} />
+        </div>
       </header>
 
       <section className="space-y-4">
@@ -243,45 +269,6 @@ export default function PortfolioPage() {
         </ul>
       </section>
 
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Screenshots</h2>
-        <p className="text-muted-foreground">
-          Captures from the live product at{" "}
-          <a
-            href="https://www.lawbee.org"
-            className="font-medium text-foreground underline underline-offset-4"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            www.lawbee.org
-          </a>
-          : marketing home (desktop + mobile), on-page search with the term
-          &quot;industry&quot;, and the{" "}
-          <a
-            href="https://www.lawbee.org/mybills"
-            className="font-medium text-foreground underline underline-offset-4"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            /mybills
-          </a>{" "}
-          view (anonymous session—shows sign-in if not logged in).
-        </p>
-        <div className="grid gap-10">
-          <div className="space-y-5">
-            <h3 className="text-left text-2xl font-semibold tracking-tight text-foreground">
-              Desktop Versions
-            </h3>
-            <ScreenshotCarousel screenshots={desktopScreenshots} />
-          </div>
-          <div className="space-y-5">
-            <h3 className="text-left text-2xl font-semibold tracking-tight text-foreground">
-              Mobile Versions
-            </h3>
-            <ScreenshotCarousel screenshots={mobileScreenshots} mobileSized />
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
