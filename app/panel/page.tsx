@@ -67,6 +67,12 @@ export default function Page() {
 
     useGSAP(() => {
         function moveCard() {
+            const videoElements = document.querySelectorAll<HTMLVideoElement>(".item video")
+            const nextVideo = videoElements[1]
+            if (nextVideo) {
+                void nextVideo.play()
+            }
+
             flipState.current = Flip.getState(".item")
             setVideoOrder(prev => {
                 const next = [...prev]
@@ -85,14 +91,14 @@ export default function Page() {
             {videoOrder.map((video, index) => (
                 <div
                     key={`video-${video[0]}`}
-                    className={`item item-${video[0]} absolute w-[80vw] max-w-[300px] [aspect-ratio:2/3] bg-transparent`}
+                    className={`item item-${video[0]} absolute w-[80vw] max-w-[300px] [aspect-ratio:2/3] bg-transparent transform-gpu will-change-transform`}
                     style={{
-                        left: (index - videoOrder.length / 2) * 3,
-                        top: (index - videoOrder.length / 2) * 2,
+                        left: (index - (videoOrder.length - 1) / 2) * 3,
+                        top: (index - (videoOrder.length - 1) / 2) * 2,
                         zIndex: videoOrder.length - index
                     }}
                 >
-                    <VideoPanel url={video[1]} video={video[1]} />
+                    <VideoPanel url={video[1]} video={video[1]} isActive={index === 0} />
                 </div>
             ))}
         </div>

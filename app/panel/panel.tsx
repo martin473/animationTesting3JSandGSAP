@@ -12,18 +12,32 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import TopBar from "../components/topBar";
+import { useEffect, useRef } from "react";
 export function topButton(){
     return(<div className="relative bg-[rgba(255,255,255,0.15)] backdrop-filter backdrop-blur-[2px] backdrop-saturate-180 border border-solid border-[rgba(255,255,255,0.8)] rounded-[2rem] [box-shadow:0_8px_32px_rgba(31,38,135,0.2),inset_0_4px_20px_rgba(255,255,255,0.3)]"></div>)
 }
 
-export function VideoPanel({url, video}:{url: string; video: string}) {
+export function VideoPanel({url, video, isActive}:{url: string; video: string; isActive: boolean}) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+
+    if (isActive) {
+      void el.play();
+      return;
+    }
+
+    el.pause();
+  }, [isActive]);
 
   return (
 
         <div className="flex m-6 bg-black flex-col rounded-lg   w-50 h-100 backdrop-filter backdrop-blur-[2px] [box-shadow:0_8px_32px_rgba(31,38,135,0.2),inset_0_4px_20px_rgba(255,255,255,0.3)]">
             <TopBar url={url} bgCol="bg-gray-300/70" />
             <div className="w-full h-full bg-black rounded-b-lg flex items-center align-middle">
-                <video className="rounded-b-lg" width="320" height="240" autoPlay loop muted playsInline preload="auto">
+                <video ref={videoRef} className="rounded-b-lg will-change-transform" width="320" height="240" loop muted playsInline preload="auto">
                     <source src={video} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
