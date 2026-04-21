@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import ScreenshotCarousel from "../screenshot-carousel";
+import { SectionNav } from "../components/section-nav";
+import ScreenshotCarousel from "../components/screenshot-carousel";
 
 export const metadata: Metadata = {
   title: "Streamer — MVP Case Study",
@@ -94,22 +94,13 @@ const screenshots = [
 
 export default function StreamerPortfolioPage() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col gap-10 px-6 py-14 sm:px-10">
-      <header className="space-y-4">
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-          <p className="font-medium uppercase tracking-wider text-muted-foreground">
-            Portfolio Case Study
-          </p>
-          <span className="hidden sm:inline" aria-hidden>
-            ·
-          </span>
-          <Link
-            href="/portfolio"
-            className="font-medium text-foreground underline underline-offset-4 hover:opacity-80"
-          >
-            Lawbee case study
-          </Link>
-        </div>
+    <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col px-6 pt-6 pb-14 sm:px-10">
+      <div className="flex flex-col gap-5">
+        <SectionNav current="streamer" />
+        <header className="space-y-4">
+        <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+          Portfolio case study
+        </p>
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Streamer</h1>
         <p className="max-w-3xl text-lg text-muted-foreground">
           A fully functional Android and Cloud Server MVP built in a week with a Cursor AI agent.
@@ -156,7 +147,9 @@ export default function StreamerPortfolioPage() {
           </ul>
         </div>
       </header>
+      </div>
 
+      <div className="mt-10 flex flex-col gap-10">
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Project snapshot</h2>
         <div className="grid gap-3 rounded-xl border p-5">
@@ -212,6 +205,7 @@ export default function StreamerPortfolioPage() {
           ))}
         </div>
       </section>
+      </div>
 
     </main>
   );

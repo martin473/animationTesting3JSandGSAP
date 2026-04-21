@@ -6,7 +6,7 @@
 import { Panel, VideoPanel } from "./panel";
 import { useGSAP } from '@gsap/react'; //install this library, use like useEffect, can load all GSAP info on mount, or on click or other
 import {gsap} from 'gsap';
-import {Flip} from 'gsap/Flip';
+import { Flip } from "gsap/Flip";
 import { cloneElement } from "react";
 
 export default function Page(){

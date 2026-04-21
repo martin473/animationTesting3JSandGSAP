@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import ScreenshotCarousel from "./screenshot-carousel";
+import { SectionNav } from "../components/section-nav";
+import ScreenshotCarousel from "../components/screenshot-carousel";
 
 export const metadata: Metadata = {
   title: "Lawbee Portfolio Case Study",
@@ -126,23 +126,17 @@ const screenshots = [...desktopScreenshots, ...mobileScreenshots];
 
 export default function PortfolioPage() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col gap-10 px-6 py-14 sm:px-10">
-      <header className="space-y-4">
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-          <p className="font-medium uppercase tracking-wider text-muted-foreground">
-            Portfolio Case Study
-          </p>
-          <span className="hidden sm:inline" aria-hidden>
-            ·
-          </span>
-          <Link
-            href="/portfolio/streamer"
-            className="font-medium text-foreground underline underline-offset-4 hover:opacity-80"
-          >
-            Streamer MVP case study
-          </Link>
-        </div>
+    <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col px-6 pt-6 pb-14 sm:px-10">
+      <div className="flex flex-col gap-5">
+        <SectionNav current="lawbee" />
+        <header className="space-y-4">
+        <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+          Portfolio case study
+        </p>
         <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Lawbee</h1>
+        <p className="text-sm text-muted-foreground">
+          Developed with zero AI assistance
+        </p>
         <p className="max-w-3xl text-lg text-muted-foreground">
           Built Lawbee to allow issues focused NGOs regularly track legislation
           around core fundraising issues in minutes.
@@ -190,7 +184,9 @@ export default function PortfolioPage() {
           <ScreenshotCarousel screenshots={screenshots} />
         </div>
       </header>
+      </div>
 
+      <div className="mt-10 flex flex-col gap-10">
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold">Project Snapshot</h2>
         <div className="grid gap-3 rounded-xl border p-5 sm:grid-cols-2">
@@ -268,6 +264,7 @@ export default function PortfolioPage() {
           ))}
         </ul>
       </section>
+      </div>
 
     </main>
   );

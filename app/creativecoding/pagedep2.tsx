@@ -2,7 +2,7 @@
 import { Panel, VideoPanel } from "./panel";
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { Flip } from 'gsap/Flip';
+import { Flip } from "gsap/Flip";
 import { useState, useRef, useEffect } from "react";
 
 gsap.registerPlugin(Flip)
@@ -43,19 +43,19 @@ export default function Page() {
         if (!flipState.current) return
         Flip.from(flipState.current, {
             targets: ".item",
-            duration: 0.4,
+            duration: 0.2,  
             ease: "sine.inOut",
             absolute: true,
             onEnter: (elements) =>
                 gsap.from(elements, {
-                    duration: 0.2,
+                    duration: 0.1,
                     yPercent: 20,
                     opacity: 0,
                     ease: "expo.out"
                 }),
             onLeave: (elements) =>
                 gsap.to(elements, {
-                    duration: 0.2,
+                    duration: 0.1,
                     yPercent: 5,
                     xPercent: -5,
                     opacity: 0,
@@ -67,17 +67,11 @@ export default function Page() {
 
     useGSAP(() => {
         function moveCard() {
-            const videoElements = document.querySelectorAll<HTMLVideoElement>(".item video")
-            const nextVideo = videoElements[1]
-            if (nextVideo) {
-                void nextVideo.play()
-            }
-
             flipState.current = Flip.getState(".item")
             setVideoOrder(prev => {
                 const next = [...prev]
-                const first = next.shift()
-                next.push(first)
+                const last = next.pop()
+                next.unshift(last)
                 return next
             })
         }
@@ -87,18 +81,14 @@ export default function Page() {
     }, [])
 
     return (
-        <div className="slider absolute w-[80vw] max-w-[300px] [perspective:100px] top-[30vh] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="slider absolute w-[300px] h-[200px] [perspective:100px] top-[30vh] left-2/4 -translate-x-1/2">
             {videoOrder.map((video, index) => (
                 <div
                     key={`video-${video[0]}`}
-                    className={`item item-${video[0]} absolute w-[80vw] max-w-[300px] [aspect-ratio:2/3] bg-transparent transform-gpu will-change-transform`}
-                    style={{
-                        left: (index - (videoOrder.length - 1) / 2) * 3,
-                        top: (index - (videoOrder.length - 1) / 2) * 2,
-                        zIndex: videoOrder.length - index
-                    }}
+                    className={`item item-${video[0]} absolute w-[300px] [aspect-ratio:2/3] bg-transparent`}
+                    style={{ left: index * -4, top: index * -1, }}
                 >
-                    <VideoPanel url={video[1]} video={video[1]} isActive={index === 0} />
+                    <VideoPanel url={video[1]} video={video[1]} />
                 </div>
             ))}
         </div>

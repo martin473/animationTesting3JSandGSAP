@@ -1,7 +1,15 @@
 import ButtonRow from "./buttonRow";
 import Image from "next/image";
 
-export default function TopBar({url, bgCol="bg-gray-300/20", textCol=""}:{url: string; textCol: string; bgCol: string}){
+export default function TopBar({
+  url,
+  bgCol = "bg-gray-300/20",
+  textCol = "",
+}: {
+  url: string;
+  textCol?: string;
+  bgCol?: string;
+}) {
     return(
         <div>
             <ButtonRow/>
