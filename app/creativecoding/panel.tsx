@@ -77,7 +77,7 @@ export function VideoPanel({
                   loop
                   muted
                   playsInline
-                  preload={isActive ? "auto" : "none"}
+                  preload="auto"
                   onLoadedData={notifyReady}
                   onCanPlay={notifyReady}
                 >
