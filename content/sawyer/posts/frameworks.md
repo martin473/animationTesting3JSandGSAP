@@ -3,7 +3,7 @@ slug: "frameworks"
 title: "Oops I'm Five Paradigms Deep"
 date: "April 23, 2025"
 description: "Modern development uses frameworks that are built on top of many moving pieces."
-heroImage: "https://www.sawyersweet.net/images/og/turtles.webp"
+heroImage: "/sawyer/og/turtles.jpg"
 ---
 
 Modern development uses frameworks that are built on top of not one but two or more frameworks.

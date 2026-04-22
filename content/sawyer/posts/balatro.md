@@ -3,7 +3,7 @@ slug: "balatro"
 title: "Balatro School of Economics"
 date: "April 21, 2025"
 description: "The complexity lies in that there are many, many moving parts in these games. It's easier to optimize for growth than perfect play."
-heroImage: "https://www.sawyersweet.net/images/og/balatro.webp"
+heroImage: "/sawyer/og/balatro.jpg"
 ---
 
 I am a big time math and comp sci person with a penchant for hard games about growth and scaling systems (Power Grid, Slay the Spire, Balatro).

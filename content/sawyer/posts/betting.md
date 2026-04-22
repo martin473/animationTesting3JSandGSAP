@@ -3,7 +3,7 @@ slug: "betting"
 title: "What Annie Duke and Nate Silver Forget About Betting"
 date: "April 22, 2025"
 description: "The issue with real life is it's vastly incalculable, and fully of hidden information."
-heroImage: "https://www.sawyersweet.net/images/og/annie.jpg"
+heroImage: "/sawyer/og/annie.jpg"
 ---
 
 A good bet is quantifiable. With poker you mix three different, measurable things together, 1) the chance my hand will improve based on the next card 2) The chance an opponent has a better hand 3) the amount of money I have to pay into the pot to see that bet through.

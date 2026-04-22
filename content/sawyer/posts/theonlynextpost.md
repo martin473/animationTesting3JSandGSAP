@@ -3,7 +3,7 @@ slug: "theonlynextpost"
 title: "The ONLY NextJS Post New Devs Should Read"
 date: "September 9, 2025"
 description: "The NextJS documentation is amazing BUT ONLY EXPLAINS 1/5th of what is happening under the hood."
-heroImage: "https://www.sawyersweet.net/images/og/nextjs.jpeg"
+heroImage: "/sawyer/og/nextjs.jpeg"
 ---
 
 I’m going to give you all the links you’ll ever need to write NEXT.JS.

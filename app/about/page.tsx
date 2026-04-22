@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Software engineer, writing, and contact—content mirrored from sawyersweet.net with Pittsburgh as the current base.",
 };
 
-const AVATAR = "https://www.sawyersweet.net/images/avatar.jpg";
+const AVATAR = "/sawyer/avatar.jpg";
 
 const skills = [
   "NextJS/Typescript/Tailwind",
